@@ -17,6 +17,7 @@ test_dep_libs = [
 
 # subdirs
 subdir('graph')
+subdir('algorithms')
 
 # This executable contains all the tests
 project_test_sources += test_main
