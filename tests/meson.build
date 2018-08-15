@@ -19,6 +19,7 @@ test_dep_libs = [
 subdir('graph')
 subdir('algorithms')
 subdir('initialisers')
+subdir('models')
 
 # This executable contains all the tests
 project_test_sources += test_main
