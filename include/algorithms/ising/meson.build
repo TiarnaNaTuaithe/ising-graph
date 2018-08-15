@@ -1,1 +1,1 @@
-project_header_files += files('metropolis.h')
+project_header_files += files('metropolis.h', 'all.h')
