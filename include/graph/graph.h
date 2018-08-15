@@ -7,7 +7,6 @@
 #include <vector>
 
 namespace isinggraph {
-namespace graph {
 
 //! An unweighted, undirected, arbitrarily connected graph
 class Graph {
@@ -35,5 +34,4 @@ class Graph {
   std::vector<std::vector<int>> neighbours_;
 };
 
-}  // namespace graph
 }  // namespace isinggraph

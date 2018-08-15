@@ -4,7 +4,7 @@
 TEST(InitialiserTest, Randomiser) {
   std::vector<int> values(1000, 0);
 
-  ::isinggraph::ising::initialiser::Random r;
+  ::isinggraph::ising::Random r;
   r.initialise(values);
 
   int count_up = 0;

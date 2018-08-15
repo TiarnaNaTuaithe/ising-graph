@@ -10,7 +10,6 @@
 
 namespace isinggraph {
 namespace ising {
-namespace initialiser {
 
 //! An initialiser for the Ising model that sets spins to random values
 class Random {
@@ -26,6 +25,5 @@ class Random {
   std::uniform_int_distribution<int> random_int_{0, 1};
 };
 
-}  // namespace initialiser
 }  // namespace ising
 }  // namespace isinggraph

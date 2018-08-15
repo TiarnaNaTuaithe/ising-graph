@@ -3,7 +3,7 @@
 #include "gtest/gtest.h"
 
 TEST(MetropolisTest, ObviousFlip) {
-  isinggraph::ising::algorithm::Metropolis m;
+  isinggraph::ising::Metropolis m;
   std::vector<std::vector<int>> const neighbours{
       {3, 1}, {0, 2}, {1, 3}, {2, 0}};
 

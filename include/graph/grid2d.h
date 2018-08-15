@@ -8,7 +8,6 @@ neighbour storage
 #include <vector>
 
 namespace isinggraph {
-namespace graph {
 
 //! A two dimensional square grid with toroidal boundaries, which doesn't store
 //! neighbours
@@ -45,5 +44,4 @@ class Grid2D {
   std::vector<int> neighbours_;
 };
 
-}  // namespace graph
 }  // namespace isinggraph

@@ -2,7 +2,7 @@
 #include "gtest/gtest.h"
 
 TEST(Grid2DTest, Grid2DConstruction) {
-  isinggraph::graph::Grid2D g(3);
+  isinggraph::Grid2D g(3);
 
   std::vector<int> zero_neighbours{1, 3, 2, 6};
   EXPECT_EQ(zero_neighbours, g.neighbours(0));
@@ -33,7 +33,7 @@ TEST(Grid2DTest, Grid2DConstruction) {
 }
 
 TEST(Grid2DTest, Grid2DEdges) {
-  isinggraph::graph::Grid2D g(4);
+  isinggraph::Grid2D g(4);
   std::vector<int> counter(g.size(), 0);
 
   for (int i = 0; i < g.size(); ++i) {

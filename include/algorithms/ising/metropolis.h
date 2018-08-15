@@ -11,7 +11,6 @@ model
 
 namespace isinggraph {
 namespace ising {
-namespace algorithm {
 
 //! A Metropolis algorithm policy for the Ising model
 class Metropolis {
@@ -57,6 +56,5 @@ void Metropolis::sweep(std::vector<site_type_t>& values, double const& beta,
   }
 }
 
-}  // namespace algorithm
 }  // namespace ising
 }  // namespace isinggraph
