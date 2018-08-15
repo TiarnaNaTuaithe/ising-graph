@@ -1,5 +1,6 @@
 graphtest_sources = [
-    'graphtest.cc'
+  'graphtest.cc',
+  'grid2dtest.cc'
 ]
 
 graphtest_deps = [

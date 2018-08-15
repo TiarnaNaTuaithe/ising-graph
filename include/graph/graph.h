@@ -1,7 +1,7 @@
 #pragma once
 /**
 @file
-@brief This file contains a simple graph implementation
+@brief This file contains a simple arbitrary graph implementation
  */
 
 #include <vector>
@@ -9,10 +9,8 @@
 namespace isinggraph {
 namespace graph {
 
-//! An unweighted, undirected graph
+//! An unweighted, undirected, arbitrarily connected graph
 class Graph {
-  std::vector<std::vector<int>> neighbours_;
-
  public:
   //! A constuctor from a neighbour vector
   Graph(std::vector<std::vector<int>> n) : neighbours_{n} {
@@ -32,6 +30,9 @@ class Graph {
   int size() {
     return neighbours_.size();
   }
+
+ private:
+  std::vector<std::vector<int>> neighbours_;
 };
 
 }  // namespace graph
