@@ -1,6 +1,12 @@
 ## IsingGraph
 
-This library aims to provide a generic framework for simulating Ising-type spin models with fully configurable model, algorithm and graph structure.
+This library aims to provide a generic framework for simulating nearest-neighbour Ising-type spin models with fully configurable model, algorithm and graph structure.
+
+The Ising model is an important and well-studied model of ferromagnetism, due to its rich behaviour (it can exhibit phase transitions) and the existence of an exact analytical solution for the model on a two-dimensional square lattice. Although it most widely studied on regular lattices, Ising networks with more complex architecture have been shown to display unique effects of their own. Models on scale-free networks, random networks, trees, and many others each show distinct and interesting behaviours.
+
+There are several generalisations of the Ising model, such as the Potts model and O(n) vector models, and several different algorithms with which to simulate them. This library provides a way to efficiently and easily study different combinations of these factors, with as small as possible runtime overhead through the use of C++ template techniques.
+
+Programmable weights between spins and exteranl magnetic fields are not currently supported, but there is interest in integrating these features if possible.
 
 The project structure comes from this Meson sample project: https://github.com/tiernemi/meson-sample-project
 
