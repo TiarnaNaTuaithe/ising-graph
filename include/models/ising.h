@@ -15,7 +15,7 @@ namespace ising {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
-	  class InitialiserPolicy = Random>
+          class InitialiserPolicy = Random>
 class Ising {
  public:
   using site_type_t = typename AlgorithmPolicy::site_type_t;
@@ -27,12 +27,14 @@ class Ising {
   //! This constructor covers all the possible graph constructors
   template <typename... Args>
   Ising(Args&&... args) : graph_{std::forward<Args>(args)...} {
+    spins_.resize(graph_.size());
     init_.initialise(spins_);
   }
 
   //! The other constructor can't capture initialiser lists, so we do that here
   Ising(std::initializer_list<std::vector<site_type_t>> init_list)
       : graph_{init_list} {
+    spins_.resize(graph_.size());
     init_.initialise(spins_);
   }
 
