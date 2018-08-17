@@ -1,15 +1,14 @@
 #include "benchmark/benchmark.h"
 #include "models/ising.h"
+#include "measurement/susceptibility.h"
 
-static void BM_METROPOLIS(benchmark::State &state) {
+static void BM_SUSCEPTIBILITY(benchmark::State &state) {
   using namespace isinggraph::ising;
   Ising<Metropolis, isinggraph::Grid2D> ising_grid(100);
   for (auto _ : state) {
-    for (int i = 0; i < 10000; ++i) {
-      ising_grid.update(1.0);
-    }
+    isinggraph::measure_susceptibility(ising_grid, 0.1, 1.0, 100, 10, 10);
   }
 }
 
 // Register the function as a benchmark
-BENCHMARK(BM_METROPOLIS);
+BENCHMARK(BM_SUSCEPTIBILITY);
