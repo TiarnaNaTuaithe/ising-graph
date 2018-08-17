@@ -15,7 +15,7 @@ namespace ising {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
-          class InitialiserPolicy = Random>
+	  class InitialiserPolicy = Random>
 class Ising {
  public:
   using site_type_t = typename AlgorithmPolicy::site_type_t;
@@ -38,7 +38,7 @@ class Ising {
 
   //! Update all of the spins
   void update(double const& beta) {
-    algo_.sweep(spins_, beta, [&](int n) { return graph_.get_neighbours(n); });
+    algo_.sweep(spins_, beta, [&](int n) { return graph_.neighbours(n); });
   }
 
   //! Get the average magnetisation of the lattice
