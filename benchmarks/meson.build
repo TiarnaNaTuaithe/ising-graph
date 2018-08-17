@@ -16,6 +16,7 @@ benchmark_dep_libs = [
 ]
 
 # subdirs
+subdir('ising')
 
 # This executable contains all the benchmarks
 all_benchmark_sources += benchmark_main
