@@ -15,7 +15,7 @@ namespace ising {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
-          class InitialiserPolicy = Random>
+	  class InitialiserPolicy = Random>
 class Ising {
  public:
   using site_type_t = typename AlgorithmPolicy::site_type_t;
@@ -44,13 +44,13 @@ class Ising {
   }
 
   //! Get the average magnetisation of the lattice
-  double average_magnetisation() {
+  double average_magnetisation() const {
     auto magnetisation = std::accumulate(spins_.begin(), spins_.end(), 0);
     return static_cast<double>(magnetisation) / spins_.size();
   }
 
   //! Get the susceptibility of the lattice
-  double susceptibility() {
+  double susceptibility() const {
     auto const m = average_magnetisation();
     return m * m;
   }

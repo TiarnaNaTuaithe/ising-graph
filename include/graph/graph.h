@@ -16,17 +16,17 @@ class Graph {
   }
 
   //! Get the neighbours of a given node
-  std::vector<int> const& neighbours(int node) {
+  std::vector<int> const& neighbours(int node) const {
     return neighbours_[node];
   }
 
   //! Get the degree of a given node
-  int degree(int n) {
+  int degree(int n) const {
     return neighbours_[n].size();
   }
 
   //! Get the number of nodes in the graph
-  int size() {
+  int size() const {
     return neighbours_.size();
   }
 
