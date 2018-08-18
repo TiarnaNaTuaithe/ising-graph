@@ -15,12 +15,7 @@ project_benchmark_sources = []
 inc = [include_directories('include')]
 
 subdir('include')
-subdir('third_party')
 # This is where you should add in include directories
-
-# This triggers the builds of sources
-subdir('src')
-# This links all the static libs into the main source file to form a binary
 
 ising_graph_deps = [
 ]
