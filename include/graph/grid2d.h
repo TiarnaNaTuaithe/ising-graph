@@ -21,10 +21,10 @@ class Grid2D {
   //! Get the neighbours of a given node
   std::vector<int> const& neighbours(int node) const {
     neighbours_[0] =
-	(node + 1) % side_length_ + side_length_ * (node / side_length_);
+        (node + 1) % side_length_ + side_length_ * (node / side_length_);
     neighbours_[1] = (node + side_length_) % this->size();
     neighbours_[2] = (side_length_ + node - 1) % side_length_ +
-		     side_length_ * (node / side_length_);
+                     side_length_ * (node / side_length_);
     neighbours_[3] = (this->size() + node - side_length_) % this->size();
     return neighbours_;
   }

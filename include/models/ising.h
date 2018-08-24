@@ -14,7 +14,7 @@ namespace isinggraph::ising {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
-	  class InitialiserPolicy = Random>
+          class InitialiserPolicy = Random>
 class Ising {
  public:
   using site_type_t = typename AlgorithmPolicy::site_type_t;
@@ -42,7 +42,7 @@ class Ising {
     algo_.sweep(spins_, beta, [&](int n) { return graph_.neighbours(n); });
   }
 
-  std::vector<site_type_t> const & spins() {
+  std::vector<site_type_t> const& spins() {
     return spins_;
   }
 
@@ -65,4 +65,4 @@ class Ising {
   std::vector<site_type_t> spins_;
 };
 
-}  // namespace ising
+}  // namespace isinggraph::ising

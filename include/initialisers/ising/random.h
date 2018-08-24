@@ -24,4 +24,4 @@ class Random {
   std::uniform_int_distribution<int> random_int_{0, 1};
 };
 
-}  // namespace ising
+}  // namespace isinggraph::ising
