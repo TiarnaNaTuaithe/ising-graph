@@ -43,6 +43,10 @@ class Ising {
     algo_.sweep(spins_, beta, [&](int n) { return graph_.neighbours(n); });
   }
 
+  std::vector<site_type_t> const & spins() {
+    return spins_;
+  }
+
   //! Get the average magnetisation of the lattice
   double average_magnetisation() const {
     auto magnetisation = std::accumulate(spins_.begin(), spins_.end(), 0);
