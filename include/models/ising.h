@@ -10,8 +10,7 @@
 #include "graph/all.h"
 #include "initialisers/ising/all.h"
 
-namespace isinggraph {
-namespace ising {
+namespace isinggraph::ising {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
@@ -67,4 +66,3 @@ class Ising {
 };
 
 }  // namespace ising
-}  // namespace isinggraph

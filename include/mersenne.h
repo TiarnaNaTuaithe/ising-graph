@@ -7,8 +7,7 @@ numbers
 
 #include <random>
 
-namespace isinggraph {
-namespace random {
+namespace isinggraph::random {
 
 //! A mersenne twister engine with which to generate random numbers
 inline std::mt19937& mersenne_twister() {
@@ -16,5 +15,4 @@ inline std::mt19937& mersenne_twister() {
   return mt;
 }
 
-}  // namespace random
-}  // namespace isinggraph
+}  // namespace isinggraph::random

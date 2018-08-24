@@ -9,8 +9,7 @@ model
 #include <vector>
 #include "../../mersenne.h"
 
-namespace isinggraph {
-namespace ising {
+namespace isinggraph::ising {
 
 //! A Metropolis algorithm policy for the Ising model
 class Metropolis {
@@ -26,7 +25,7 @@ class Metropolis {
    */
   template <typename F>
   void sweep(std::vector<site_type_t>& values, double const& beta,
-             F&& get_neighbours);
+	     F&& get_neighbours);
 
  private:
   std::uniform_real_distribution<double> random_double_{
@@ -35,7 +34,7 @@ class Metropolis {
 
 template <typename F>
 void Metropolis::sweep(std::vector<site_type_t>& values, double const& beta,
-                       F&& get_neighbours) {
+		       F&& get_neighbours) {
   auto energy_difference = [&](int node) {
     int mismatched_neighbours = 0;
     auto const& neighbours = get_neighbours(node);
@@ -44,17 +43,16 @@ void Metropolis::sweep(std::vector<site_type_t>& values, double const& beta,
     }
     // The following is derived from the Ising Hamiltonian.
     return static_cast<int>(2 *
-                            (neighbours.size() - 2 * mismatched_neighbours));
+			    (neighbours.size() - 2 * mismatched_neighbours));
   };
 
   for (auto& node : values) {
     auto const delta_e = energy_difference(node);
     if (delta_e < 0 ||
-        exp(-1 * beta * delta_e) > random_double_(random::mersenne_twister())) {
+	exp(-1 * beta * delta_e) > random_double_(random::mersenne_twister())) {
       node *= -1;
     }
   }
 }
 
 }  // namespace ising
-}  // namespace isinggraph

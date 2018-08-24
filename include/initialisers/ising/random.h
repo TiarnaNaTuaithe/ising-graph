@@ -8,8 +8,7 @@
 #include <vector>
 #include "../../mersenne.h"
 
-namespace isinggraph {
-namespace ising {
+namespace isinggraph::ising {
 
 //! An initialiser for the Ising model that sets spins to random values
 class Random {
@@ -26,4 +25,3 @@ class Random {
 };
 
 }  // namespace ising
-}  // namespace isinggraph
