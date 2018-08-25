@@ -5,6 +5,7 @@
 */
 
 #include <iostream>
+#include <utility>
 
 namespace isinggraph {
 
@@ -18,16 +19,15 @@ namespace isinggraph {
   @param steps The number of values of beta to sample from the range
   @param avg_steps The number of readings to average over for each measurement
   @param therm_steps The number of updates to do between each measurement
-  (called 'thermalisation')
-  @param print print the calculated values. We might not want to do this for a
-  benchmark.
+  @return A vector of pairs containing the measurements
 */
 template <typename T>
-void measure_susceptibility(T& model, double const& beta_low,
-                            double const& beta_high, int steps, int avg_steps,
-                            int therm_steps, bool print = false) {
+std::vector<std::pair<double, double>> measure_susceptibility(
+    T& model, double const& beta_low, double const& beta_high, int steps,
+    int avg_steps, int therm_steps) {
   auto beta = beta_low;
   auto const increment = (beta_high - beta_low) / steps;
+  std::vector<std::pair<double, double>> results;
 
   auto thermalise = [&]() {
     for (int i = 0; i < therm_steps; ++i) {
@@ -41,12 +41,10 @@ void measure_susceptibility(T& model, double const& beta_low,
       thermalise();
       measurement += model.susceptibility();
     }
-
-    if (print) {
-      std::cout << beta << '\t' << measurement / avg_steps << '\n';
-    }
+    results.emplace_back(beta, measurement / avg_steps);
     beta += increment;
   }
+  return results;
 }
 
 }  // namespace isinggraph
