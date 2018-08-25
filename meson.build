@@ -17,11 +17,19 @@ inc = [include_directories('include')]
 subdir('include')
 # This is where you should add in include directories
 
+subdir('src')
+
 ising_graph_deps = [
 ]
 
 ising_graph_dep_libs = [
 ]
+
+test_bin = executable('measure-lattice',
+		      main_source,
+		      include_directories : inc,
+		      dependencies : ising_graph_deps,
+		      link_with : ising_graph_dep_libs)
 
 if get_option('enable-tests')
   subdir('tests')
