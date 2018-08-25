@@ -42,15 +42,14 @@ void Metropolis::sweep(std::vector<site_type_t>& values, double const& beta,
       mismatched_neighbours += static_cast<int>(values[n] != values[node]);
     }
     // The following is derived from the Ising Hamiltonian.
-    return static_cast<int>(2 *
-                            (neighbours.size() - 2 * mismatched_neighbours));
+    return static_cast<int>(neighbours.size() - 2 * mismatched_neighbours);
   };
 
-  for (auto& node : values) {
-    auto const delta_e = energy_difference(node);
+  for (auto i = 0u; i < values.size(); ++i) {
+    auto const delta_e = energy_difference(i);
     if (delta_e < 0 ||
         exp(-1 * beta * delta_e) > random_double_(random::mersenne_twister())) {
-      node *= -1;
+      values[i] *= -1;
     }
   }
 }
