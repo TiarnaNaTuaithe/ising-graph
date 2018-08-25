@@ -35,14 +35,14 @@ class Metropolis {
 template <typename F>
 void Metropolis::sweep(std::vector<site_type_t>& values, double const& beta,
                        F&& get_neighbours) {
-  auto energy_difference = [&](int node) {
+  auto energy_difference = [&](int node) -> int {
     int mismatched_neighbours = 0;
     auto const& neighbours = get_neighbours(node);
     for (auto const& n : neighbours) {
       mismatched_neighbours += static_cast<int>(values[n] != values[node]);
     }
     // The following is derived from the Ising Hamiltonian.
-    return static_cast<int>(neighbours.size() - 2 * mismatched_neighbours);
+    return 2 * (neighbours.size() - 2 * mismatched_neighbours);
   };
 
   for (auto i = 0u; i < values.size(); ++i) {
