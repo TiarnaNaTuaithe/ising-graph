@@ -10,7 +10,7 @@ numbers
 namespace isinggraph::random {
 
 //! A mersenne twister engine with which to generate random numbers
-inline std::mt19937& mersenne_twister() {
+inline std::mt19937& mersenne_twister() noexcept {
   static std::mt19937 mt{9876789};
   return mt;
 }

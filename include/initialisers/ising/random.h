@@ -14,7 +14,7 @@ namespace isinggraph::ising {
 class Random {
  public:
   //! The initialiser function
-  void initialise(std::vector<int>& spins) {
+  void initialise(std::vector<int>& spins) noexcept {
     for (auto& s : spins) {
       s = 2 * random_int_(random::mersenne_twister()) - 1;
     }

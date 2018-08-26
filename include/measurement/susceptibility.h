@@ -24,7 +24,7 @@ namespace isinggraph {
 template <typename T>
 std::vector<std::pair<double, double>> measure_susceptibility(
     T& model, double const& beta_low, double const& beta_high, int steps,
-    int avg_steps, int therm_steps) {
+    int avg_steps, int therm_steps) noexcept {
   auto beta = beta_low;
   auto const increment = (beta_high - beta_low) / steps;
   std::vector<std::pair<double, double>> results;

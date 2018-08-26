@@ -38,22 +38,22 @@ class Ising {
   }
 
   //! Update all of the spins
-  void update(double const& beta) {
+  void update(double const& beta) noexcept {
     algo_.sweep(spins_, beta, [&](int n) { return graph_.neighbours(n); });
   }
 
-  std::vector<site_type_t> const& spins() {
+  std::vector<site_type_t> const& spins() noexcept {
     return spins_;
   }
 
   //! Get the average magnetisation of the lattice
-  double average_magnetisation() const {
+  double average_magnetisation() const noexcept {
     auto magnetisation = std::accumulate(spins_.begin(), spins_.end(), 0);
     return static_cast<double>(magnetisation) / spins_.size();
   }
 
   //! Get the susceptibility of the lattice
-  double susceptibility() const {
+  double susceptibility() const noexcept {
     auto const m = average_magnetisation();
     return m * m;
   }

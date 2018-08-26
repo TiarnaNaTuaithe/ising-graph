@@ -19,7 +19,7 @@ class Grid2D {
   }
 
   //! Get the neighbours of a given node
-  std::vector<int> const& neighbours(int node) const {
+  std::vector<int> const& neighbours(int node) const noexcept {
     neighbours_[0] =
         (node + 1) % side_length_ + side_length_ * (node / side_length_);
     neighbours_[1] = (node + side_length_) % this->size();
@@ -30,12 +30,12 @@ class Grid2D {
   }
 
   //! Get the degree of a given node
-  int degree(int) const {
+  constexpr int degree(int) const noexcept {
     return 4;
   }
 
   //! Get the number of nodes in the graph
-  constexpr int size() const {
+  constexpr int size() const noexcept {
     return side_length_ * side_length_;
   }
 
