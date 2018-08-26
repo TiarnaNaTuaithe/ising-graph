@@ -33,7 +33,7 @@ static constexpr auto usage =
     " -g, --grid-size \n\t side length of the square grid\n";
 
 using isinggraph::Grid2D;
-using isinggraph::ising::Ising;
+using isinggraph::Ising;
 using isinggraph::ising::Metropolis;
 
 int main(int argc, char** argv) {

@@ -10,11 +10,11 @@
 #include "graph/all.h"
 #include "initialisers/ising/all.h"
 
-namespace isinggraph::ising {
+namespace isinggraph {
 
 //! An Ising model implementation with generic graph, algorithm and initialiser
 template <class AlgorithmPolicy, class GraphPolicy,
-          class InitialiserPolicy = Random>
+          class InitialiserPolicy = ising::Random>
 class Ising {
  public:
   using site_type_t = typename AlgorithmPolicy::site_type_t;
@@ -65,4 +65,4 @@ class Ising {
   std::vector<site_type_t> spins_;
 };
 
-}  // namespace isinggraph::ising
+}  // namespace isinggraph
