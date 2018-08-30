@@ -5,7 +5,7 @@
 neighbour storage
  */
 
-#include <vector>
+#include <array>
 
 namespace isinggraph {
 
@@ -15,11 +15,10 @@ class Grid2D {
  public:
   //! A constuctor from a side length
   Grid2D(int n) : side_length_{n} {
-    neighbours_.resize(4);
   }
 
   //! Get the neighbours of a given node
-  std::vector<int> const& neighbours(int node) const noexcept {
+  auto const& neighbours(int node) const noexcept {
     neighbours_[0] =
         (node + 1) % side_length_ + side_length_ * (node / side_length_);
     neighbours_[1] = (node + side_length_) % this->size();
@@ -41,7 +40,7 @@ class Grid2D {
 
  private:
   int side_length_;
-  mutable std::vector<int> neighbours_;
+  mutable std::array<int, 4> neighbours_ = {0, 0, 0, 0};
 };
 
 }  // namespace isinggraph
