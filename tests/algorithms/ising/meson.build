@@ -1,22 +1,23 @@
-metropolistest_sources = [
-    'metropolistest.cc'
+isingalgotest_sources = [
+    'metropolistest.cc',
+    'wolfftest.cc'
 ]
 
-metropolistest_deps = [
+isingalgotest_deps = [
 
 ]
 
-metropolistest_lib_deps = [
+isingalgotest_lib_deps = [
 ]
 
-metropolistest = executable('metropolistest',
-    [metropolistest_sources, test_main],
+isingalgotest = executable('isingalgotest',
+    [isingalgotest_sources, test_main],
     include_directories : inc,
-    dependencies : [metropolistest_deps,test_deps],
-    link_with : [metropolistest_lib_deps, test_dep_libs])
+    dependencies : [isingalgotest_deps,test_deps],
+    link_with : [isingalgotest_lib_deps, test_dep_libs])
 
-test('metropolis test', metropolistest)
+test('Ising algorithm test', isingalgotest)
 
-all_test_deps += metropolistest_deps
-all_test_dep_libs += metropolistest_lib_deps
-project_benchmark_sources += files(metropolistest_sources)
+all_test_deps += isingalgotest_deps
+all_test_dep_libs += isingalgotest_lib_deps
+project_benchmark_sources += files(isingalgotest_sources)

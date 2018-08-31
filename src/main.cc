@@ -28,25 +28,41 @@ static constexpr auto usage =
     " -m, --measurements \n\t number of measurements to take\n"
     " -t, --thermalisation-steps \n\t number of thermalisations between each "
     "measured update\n"
-    " -a, --average-over \n\t number of individual measurements to average "
+    " -o, --average-over \n\t number of individual measurements to average "
     "over for each output measurment\n"
-    " -g, --grid-size \n\t side length of the square grid\n";
+    " -g, --grid-size \n\t side length of the square grid\n"
+    "-a, --algorithm \n\t 1 for Metropolis, 2 for Wolff cluster";
 
 using isinggraph::Grid2D;
 using isinggraph::Ising;
 using isinggraph::ising::Metropolis;
+using isinggraph::ising::Wolff;
 
-int main(int argc, char** argv) {
+struct Args {
   double beta_low = 0.1;
   double beta_high = 1.0;
   int measurements = 10;
   int thermalisation_steps = 10;
   int average_over = 10;
   int grid_size = 50;
+};
 
-  char opt;
+template <typename Model>
+void measure(Model& ising, Args const& a) {
+  auto results = isinggraph::measure_susceptibility(
+      ising, a.beta_low, a.beta_high, a.measurements, a.thermalisation_steps,
+      a.average_over);
+  for (auto [beta, susceptibility] : results) {
+    std::cout << beta << '\t' << susceptibility << '\n';
+  }
+}
+
+int main(int argc, char** argv) {
+  Args args;
+  int algorithm = 0;
   int index;
-  while ((opt = getopt_long(argc, argv, "hs:e:m:t:a:g:", longopts, &index)) !=
+  char opt;
+  while ((opt = getopt_long(argc, argv, "hs:e:m:t:o:g:a:", longopts, &index)) !=
          -1) {
     switch (opt) {
       case 'h':
@@ -54,22 +70,25 @@ int main(int argc, char** argv) {
         exit(0);
         break;
       case 's':
-        beta_low = atof(optarg);
+        args.beta_low = atof(optarg);
         break;
       case 'e':
-        beta_high = atof(optarg);
+        args.beta_high = atof(optarg);
         break;
       case 'm':
-        measurements = atoi(optarg);
+        args.measurements = atoi(optarg);
         break;
       case 't':
-        thermalisation_steps = atoi(optarg);
+        args.thermalisation_steps = atoi(optarg);
         break;
-      case 'a':
-        average_over = atoi(optarg);
+      case 'o':
+        args.average_over = atoi(optarg);
         break;
       case 'g':
-        grid_size = atoi(optarg);
+        args.grid_size = atoi(optarg);
+        break;
+      case 'a':
+        algorithm = atoi(optarg);
         break;
       default:
         std::cerr << "Error: invalid option.\n";
@@ -78,12 +97,20 @@ int main(int argc, char** argv) {
     }
   }
 
-  Ising<Metropolis, Grid2D> ising_grid(grid_size);
-  auto results = isinggraph::measure_susceptibility(
-      ising_grid, beta_low, beta_high, measurements, thermalisation_steps,
-      average_over);
-
-  for (auto [beta, susceptibility] : results) {
-    std::cout << beta << '\t' << susceptibility << '\n';
+  switch (algorithm) {
+    case 1: {
+      Ising<Metropolis, Grid2D> ising_grid(args.grid_size);
+      measure(ising_grid, args);
+      break;
+    }
+    case 2: {
+      Ising<Wolff, Grid2D> ising_grid(args.grid_size);
+      measure(ising_grid, args);
+      break;
+    }
+    default:
+      std::cerr << "Invalid input for algorithm.\n";
+      std::cerr << usage << '\n';
+      exit(1);
   }
 }
