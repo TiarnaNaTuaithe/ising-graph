@@ -1,6 +1,6 @@
 #include "benchmark/benchmark.h"
-#include "models/ising.h"
 #include "measurement/susceptibility.h"
+#include "models/ising.h"
 
 static void BM_SUSCEPTIBILITY(benchmark::State &state) {
   using namespace isinggraph;

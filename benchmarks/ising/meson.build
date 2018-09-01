@@ -1,32 +1,37 @@
-isingbenchmark_sources = [
-  'isingbenchmark.cc',
+metropolisbenchmark_sources = [
+  'metropolisbenchmark.cc',
+]
+
+wolffbenchmark_sources = [
+  'wolffbenchmark.cc'
 ]
 
 measurementbenchmark_sources = [
   'measurementbenchmark.cc'
 ]
 
-isingbenchmark_deps = [
-]
-
-isingbenchmark_lib_deps = [
-]
-
-isingbenchmark = executable('isingbenchmark',
-    [isingbenchmark_sources,benchmark_main],
+metropolisbenchmark = executable('metropolisbenchmark',
+    [metropolisbenchmark_sources,benchmark_main],
     include_directories : inc,
-    dependencies : [isingbenchmark_deps,benchmark_deps],
-    link_with : [isingbenchmark_lib_deps, benchmark_dep_libs])
+    dependencies : [benchmark_deps],
+    link_with : [benchmark_dep_libs])
+
+wolffbenchmark = executable('wolffbenchmark',
+    [wolffbenchmark_sources,benchmark_main],
+    include_directories : inc,
+    dependencies : [benchmark_deps],
+    link_with : [benchmark_dep_libs])
 
 measurementbenchmark = executable('measurementbenchmark',
     [measurementbenchmark_sources,benchmark_main],
     include_directories : inc,
-    dependencies : [isingbenchmark_deps,benchmark_deps],
-    link_with : [isingbenchmark_lib_deps, benchmark_dep_libs])
+    dependencies : [benchmark_deps],
+    link_with : [benchmark_dep_libs])
 
-benchmark('ising benchmark', isingbenchmark)
-benchmark('ising susceptibility benchmark', measurementbenchmark)
+benchmark('Metropolis benchmark', metropolisbenchmark)
+benchmark('Wolff benchmark', wolffbenchmark)
+benchmark('Ising susceptibility benchmark', measurementbenchmark)
 
-all_benchmark_deps += isingbenchmark_deps
-all_benchmark_dep_libs += isingbenchmark_lib_deps
-project_benchmark_sources += files(isingbenchmark_sources)
+project_benchmark_sources += files(metropolisbenchmark_sources,
+				measurementbenchmark_sources,
+			  	wolffbenchmark_sources)
