@@ -24,7 +24,8 @@ ninja
 
 ### Running Tests
 
-Benchmarks require an installed [googletest](https://github.com/google/googletest)
+Benchmarks require an installed [googletest](https://github.com/google/googletest).
+
 Tests are created using googletest and can be run using ninja once inside the build directory.
 
 ```bash
@@ -58,7 +59,8 @@ meson test --gdb testname
 
 ### Running Benchmarks
 
-Benchmarks require an installed [benchmark](https://github.com/google/benchmark)
+Benchmarks require an installed [benchmark](https://github.com/google/benchmark).
+
 Benchmarks are created using google's benchmark library and can be run using ninja once inside the build directory.
 
 ```bash
@@ -83,7 +85,8 @@ ninja tidy
 
 ### Creating Documentation
 
-Documentation generation requires [doxygen](https://github.com/doxygen/doxygen)
+Documentation generation requires [doxygen](https://github.com/doxygen/doxygen).
+
 Documentation is created using doxygen. These can be generated using ninja once inside the build directory.
 
 ```bash
